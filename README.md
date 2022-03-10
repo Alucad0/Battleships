@@ -1,8 +1,10 @@
-# SongTranslationGame
+# Battleships
 
 ## Table of contents
 
 - Destription of the project
+
+<!--  
 - Requirements
 - Installation
 - Issuetracker
@@ -13,10 +15,21 @@
 - Contributors
 - Contact
 - Changelog
+-->
 
 ### Descrption of the project
 
-text
+This project is going to be an online game of battleships using socket. 
+
+<!--  
+
+frågor
+
+a) battleships
+b) A
+c) klasser; user, gameboard, square ships (subclasss from square) 
+d) socket för att spela mot andra. 
+
 
 ### Requirements
 
@@ -46,7 +59,7 @@ text
 
 ### API
 
-<!-- ![Name of UML file] (link) --> 
+![Name of UML file] (link)
 
 ### Example/Testrun
 
@@ -79,3 +92,5 @@ This changelog will only updated after major changes and it will begin with the 
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
+
+-->
