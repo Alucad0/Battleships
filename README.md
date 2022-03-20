@@ -23,14 +23,6 @@ This project is going to be an online game of battleships using socket.
 
 <!--  
 
-frågor
-
-a) battleships
-b) A
-c) klasser; user, gameboard, square ships (subclasss from square) 
-d) socket för att spela mot andra. 
-
-
 ### Requirements
 
 - Python.
