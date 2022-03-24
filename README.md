@@ -43,9 +43,7 @@ There type `pip install pygame`, and `pip install socket.io`
 
 ### UML
 
-Work in progress!!
-
-<!-- ![Name of UML file] (link) -->
+![Battleship drawio](https://user-images.githubusercontent.com/96413210/159929615-1522ada8-0840-42e1-a327-738656582862.png)
 
 ### Example/Testrun
 
