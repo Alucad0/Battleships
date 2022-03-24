@@ -30,8 +30,7 @@ Battleships is was made with __Python 3.7+__. You can download the latest versio
 
 The two packages (pygame & socket.io) can be install your IDE (Intergrated Developer Enviroment). 
 Note that each IDE has a different way to install packages. 
-Otherwise you can use the your command prompt and changing the directory to where Python is installd and into the scripts folder. 
-There type `pip install pygame`, and `pip install socket.io`
+Otherwise you can use the your command prompt and changing the directory to where Python is installed and into the scripts folder, then type `pip install pygame` and `pip install socket.io`
 
 ### Code conventions
 
