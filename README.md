@@ -28,9 +28,7 @@ This project is going to be an online game of battleships using socket. The prog
 
 Battleships is was made with __Python 3.7+__. You can download the latest version of Python [here](https://www.python.org/downloads/).
 
-The two packages (pygame & socket.io) can be install your IDE (Intergrated Developer Enviroment). 
-Note that each IDE has a different way to install packages. 
-Otherwise you can use the your command prompt and changing the directory to where Python is installed and into the scripts folder, then type `pip install pygame` and `pip install socket.io`
+The two packages (pygame & socket.io) can be install your IDE (Intergrated Developer Enviroment). Note that each IDE has a different way to install packages. Otherwise you can use the your command prompt and change the directory to the scripts folder of the location of where Python is installed, then type `pip install pygame` and `pip install socket.io`.
 
 ### Code conventions
 
@@ -76,8 +74,10 @@ This project hasn't finnished yet.
 No Patch has been made yet. 
 
 <!-- 
-Patch 0:
-DD-MM-YYYY; Game simulates a singular ship.
+Patch 0: DD-MM-YYYY; 
+Game simulates a singular ship.
+
+last patch is 6.9
 -->
 
 ## License
