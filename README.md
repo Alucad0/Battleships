@@ -16,7 +16,10 @@
 
 ### Descrption of the project
 
-This project is going to be an online game of battleships using socket. The programm will start by either making the user logging in or making an account. Thereafter the UI will open and the user will be able to choice to play, view highscore, log out or exit the game. The game of battleships will take place online against other people with two boards, one for placing and rotating ones own ships and one for shooting and sinking the opponents ship. These boards will update after each shot. After the game is finnished the statistics of teh game will be saved to socket. 
+This project is going to be an online OOP game of battleships using socket. 
+The programm will start by either making the user logging in or making an account. Thereafter the UI will open and the user will be able to choice to play, view highscore, log out or exit the game. 
+The game of battleships will take place online against other people with two boards, one for placing and rotating ones own ships and one for shooting and sinking the opponents ship. 
+These boards will update after each shot. After the game is finnished the statistics of teh game will be saved to socket. 
 
 ### Requirements
 
@@ -28,7 +31,9 @@ This project is going to be an online game of battleships using socket. The prog
 
 Battleships is was made with __Python 3.7+__. You can download the latest version of Python [here](https://www.python.org/downloads/).
 
-The two packages (pygame & socket.io) can be install your IDE (Intergrated Developer Enviroment). Note that each IDE has a different way to install packages. Otherwise you can use the your command prompt and change the directory to the scripts folder of the location of where Python is installed, then type `pip install pygame` and `pip install socket.io`.
+The two packages (pygame & socket.io) can be install your IDE (Intergrated Developer Enviroment). 
+Note that each IDE has a different way to install packages. 
+Otherwise you can use the your command prompt and change the directory to the scripts folder of the location of where Python is installed, then type `pip install pygame` and `pip install socket.io`.
 
 ### Code conventions
 
@@ -83,4 +88,3 @@ last patch is 6.9
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
