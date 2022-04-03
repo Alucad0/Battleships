@@ -1,4 +1,4 @@
-from ship_form import *
+from ship_forms import *
 from battleship_class import *
 
 import pygame
