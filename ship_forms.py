@@ -108,7 +108,9 @@ random.shuffle(shapes)
 shapes.append(empty)
 
 # index 0 - 6 represent shape
-shape_colors = [(0, 255, 0), (255, 0, 0), (0, 255, 255), (255, 165, 0), (0, 0, 255), (128, 0, 128), (0, 0, 0)]
+# color_order: green, red, cyan, violet, orange, blue
+shape_colors = [(0, 255, 0), (255, 0, 0), (0, 255, 255), 
+                (138,43,226), (255, 165, 0), (0, 0, 255)]
 
 # needs to implement this shot 
 bullet = [['.....',
