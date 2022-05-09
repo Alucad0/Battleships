@@ -1,4 +1,5 @@
 import random
+import requests
 S = [['.....',
       '.....',
       '..00.',
@@ -103,7 +104,29 @@ empty = [['.....',
       '.....']]
 
 shapes = [S, Z, I, J, L, T]
+"""
 indexes = []
+while len(indexes) != 6:
+    # generates a random number 0-5 one time repeted
+    url = "http://www.randomnumberapi.com/api/v1.0/random?min=0&max=5&count=1"
+    response = requests.get(url)
+    answer = response.json()
+    if int(answer[0]) not in indexes:
+        indexes.append(int(answer[0]))
+
+temporary = {}
+# shuffles shapes according to indexes
+for key in indexes:
+    for item in shapes:
+        temporary[key] = item
+        shapes.remove(item)
+        break
+shapes = []
+for key in sorted(temporary.keys()):
+    shapes.append(temporary[key])
+"""
+
+# shuffeles because teh api server is unavailable
 random.shuffle(shapes)
 shapes.append(empty)
 
