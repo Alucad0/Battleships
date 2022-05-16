@@ -35,7 +35,7 @@ Otherwise you can use the command prompt and change the directory to the scripts
 
 ### UML
 
-![Battleship drawio](https://user-images.githubusercontent.com/96413210/159929615-1522ada8-0840-42e1-a327-738656582862.png)
+![Battleship drawio](https://github.com/Alucad0/Code-Dumpster/blob/main/Battleships.drawio.png?raw=true)
 
 ### Code conventions
 
