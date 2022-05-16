@@ -16,24 +16,22 @@
 
 ### Descrption of the project
 
-This project is going to be an online OOP game of battleships using socket. 
-The programm will start by either making the user logging in or making an account. Thereafter the UI will open and the user will be able to choice to play, view highscore, log out or exit the game. 
-The game of battleships will take place online against other people with two boards, one for placing and rotating ones own ships and one for shooting and sinking the opponents ship. 
-These boards will update after each shot. After the game is finnished the statistics of teh game will be saved to socket. 
+This project is going to be a two player OOP game of battleships using an API. 
+The programm will start by displaying the UI with a plethora of options. The user will choose between playing, view highscore or see instructions by pressing keys that correlate to each options. When the user chooses to play it will ask for a username, then the a user will place the ships followed by the other guessing thier location. 
 
 ### Requirements
 
 - Python.
 - pygame module.
-- socket.io.
+- requests module.
 
 ### Installation
 
 Battleships is was made with __Python 3.7+__. You can download the latest version of Python [here](https://www.python.org/downloads/).
 
-The two packages (pygame & socket.io) can be install your IDE (Intergrated Developer Enviroment). 
+The two packages (pygame & requests) can be install your IDE (Intergrated Developer Enviroment). 
 Note that each IDE has a different way to install packages. 
-Otherwise you can use the your command prompt and change the directory to the scripts folder of the location of where Python is installed, then type `pip install pygame` and `pip install socket.io`.
+Otherwise you can use the your command prompt and change the directory to the scripts folder of the location of where Python is installed, then type `pip install pygame` and `pip install requests`.
 
 ### Code conventions
 
@@ -47,12 +45,6 @@ Otherwise you can use the your command prompt and change the directory to the sc
 
 ![Battleship drawio](https://user-images.githubusercontent.com/96413210/159929615-1522ada8-0840-42e1-a327-738656582862.png)
 
-### Example/Testrun
-
-Testrun has yet to be made
-
-<!-- Testrun of Patch 6.9: -->
-
 ### Contribution
 
 This is a school project and it will get an failing grade if anyone contributes majorly, so any pull requests will be denied until it has been graded. 
@@ -63,7 +55,7 @@ This project hasn't finnished yet.
 
 ### Contributors
 
-- None
+- No contribution has been made. 
 
 ### Contact
 
