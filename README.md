@@ -16,8 +16,8 @@
 
 ### Descrption of the project
 
-This project is going to be a two player OOP game of battleships using an API. 
-The programm will start by displaying the UI with a plethora of options. The user will choose between playing, view highscore or see instructions by pressing keys that correlate to each options. When the user chooses to play it will ask for a username, then the a user will place the ships followed by the other guessing thier location. 
+This project is going to be a two player OOP (Object-oriented programming) game of battleships using an API. 
+The programm will start by displaying the UI (User intereface) with a plethora of options. The user will choose between playing, view highscore or see instructions by pressing keys that correlate to each options. When the user chooses to play it will ask for a username, then the a user will place the ships followed by the other guessing thier location. 
 
 ### Requirements
 
@@ -31,7 +31,7 @@ Battleships is was made with __Python 3.7+__. You can download the latest versio
 
 The two packages (pygame & requests) can be install your IDE (Intergrated Developer Enviroment). 
 Note that each IDE has a different way to install packages. 
-Otherwise you can use the your command prompt and change the directory to the scripts folder of the location of where Python is installed, then type `pip install pygame` and `pip install requests`.
+Otherwise you can use the command prompt and change the directory to the scripts folder of the location of where Python is installed, then type `pip install pygame` and `pip install requests`.
 
 ### UML
 
