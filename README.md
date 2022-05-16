@@ -6,13 +6,13 @@
 - Requirements
 - Installation
 - UML
-- Example/Test run
 - Code convenctions
 - Contribution
+- Finnished
 - Contributors
 - Contact
-- License
 - Changelog
+- License
 
 ### Descrption of the project
 
@@ -33,6 +33,10 @@ The two packages (pygame & requests) can be install your IDE (Intergrated Develo
 Note that each IDE has a different way to install packages. 
 Otherwise you can use the your command prompt and change the directory to the scripts folder of the location of where Python is installed, then type `pip install pygame` and `pip install requests`.
 
+### UML
+
+![Battleship drawio](https://user-images.githubusercontent.com/96413210/159929615-1522ada8-0840-42e1-a327-738656582862.png)
+
 ### Code conventions
 
 **File organisation:** The code is divided into different files, by order of functions, for easier interaction and to facilitate contributions.
@@ -40,10 +44,6 @@ Otherwise you can use the your command prompt and change the directory to the sc
 **Naming convention:** All the files use **snake_case** for variable names.
 
 **Comments:** One-line comments are written above the code line to explain the code and its purpose. The same principle applies to block comments.
-
-### UML
-
-![Battleship drawio](https://user-images.githubusercontent.com/96413210/159929615-1522ada8-0840-42e1-a327-738656582862.png)
 
 ### Contribution
 
