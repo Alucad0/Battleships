@@ -1,6 +1,8 @@
-from ship_forms import *
-from battleship_class import *
+import random
 import pygame
+import requests
+from ships import *
+
 
 pygame.font.init()
 
@@ -15,13 +17,34 @@ top_left_x = (s_width - play_width) // 2
 top_left_y = s_height - play_height
 
 
+class Shot():
+    rows = 10  # y
+    columns = 10  # x
+
+    def __init__(self, column, row, shape):
+        self.x = column
+        self.y = row
+        self.shape = shape
+        self.color = (255, 255, 255)
+        # number from 0-3
+        self.rotation = 0
+
+class Piece(Shot):
+    def __init__(self, column, row, shape):
+        super().__init__(column, row, shape)
+        self.color = shape_colors[shapes.index(shape)]
+
+
 def display_name_inst():
     win.fill((0, 0, 0))
-    draw_text_middle("Enter your username in the terminal.", 45, (255, 255, 255), win)
+    text = "Enter your username in the terminal."
+    draw_text_middle(text, 45, (255, 255, 255), win)
     pygame.display.update()
     
 
 def display_highscore():
+    """Displays the top 5 scores on the surface
+    """
     win.fill((0, 0, 0))
     with open("battleship_statistics.txt", "rt", encoding="utf8") as f:
         document = f.readlines()
@@ -33,8 +56,6 @@ def display_highscore():
         parts = line.split(":")
         value = parts[1].strip(" ")
         scores_dic[(parts[0]).strip(" ")] = value.removesuffix(" pts\n")
-
-    print(scores_dic)
 
     # sortes the dictionary based on items, from high to low
     sorted_scores = sorted(scores_dic.items(), key=lambda x: x[1], reverse=True)
@@ -64,7 +85,15 @@ def display_highscore():
 
 
 def create_grid(locked_positions={}):
-    # creates a sublist (row), 10 width with black squares and does that 10 times 
+    """Creates a two dimensional list based on the positions that are not allowed to change
+
+    Args:
+        locked_positions (dict, optional): dictionary; (x, y - position) : (red, green, blue). Defaults to {}.
+
+    Returns:
+        list: returns a nestled two dimensional list.
+    """
+    # creates a sublist (row), 10 width with black squares and does that 10 times
     grid = [[(0,0,0) for _ in range(10)] for _ in range(10)]
     
     # colors specific squares
@@ -82,10 +111,10 @@ def convert_shape_format(shape):
     """converts the nestled configurations/figures of strings to 
 
     Args:
-        shape (_type_): _description_
+        shape (object): an object from the Piece class.
 
     Returns:
-        _type_: _description_
+        list: a list of positions
     """
     positions = []
     # gets the correct rotation of the shape
@@ -118,7 +147,8 @@ def valid_space(shape, grid):
         Bool
     """
     # adds all of the positions to the list
-    accepted_positions = [[(j, i) for j in range(10) if grid[i][j] == (0, 0, 0)] for i in range(10)]
+    accepted_positions = [[(j, i) for j in range(10)\
+         if grid[i][j] == (0, 0, 0)] for i in range(10)]
     # makes the list one dimensional - instead of being nestled
     accepted_positions = [j for sub in accepted_positions for j in sub]
     formatted = convert_shape_format(shape)
@@ -146,7 +176,8 @@ def accepted_space(shape, grid):
         Bool
     """
     # adds all of the positions to the list
-    accepted_positions = [[(j, i) for j in range(10) if grid[i][j] == (0, 0, 0)] for i in range(10)]
+    accepted_positions = [[(j, i) for j in range(10)\
+         if grid[i][j] == (0, 0, 0)] for i in range(10)]
     # makes the list one dimensional - instead of being nestled
     accepted_positions = [j for sub in accepted_positions for j in sub]
     formatted = convert_shape_format(shape)
@@ -162,20 +193,22 @@ def accepted_space(shape, grid):
 def draw_text_middle(text, size, color, surface):
     font = pygame.font.SysFont('nunito', size, bold=True)
     label = font.render(text, 1, color)
-
-    surface.blit(label, (top_left_x + play_width/2 - (label.get_width() / 2), top_left_y + play_height/2 - label.get_height()/2))
+    x_position = top_left_x + play_width/2 - (label.get_width() / 2)
+    y_position = (top_left_y + play_height/2 - label.get_height()/2)
+    surface.blit(label, (x_position, y_position))
 
 
 def draw_grid(surface, row, col):
     sx = top_left_x
     sy = top_left_y
     for i in range(row):
-        pygame.draw.line(surface, (90, 90, 90), (sx, sy+ i*30), (sx + play_width, sy + i * 30))  # horizontal lines
+        pygame.draw.line(surface, (90, 90, 90), (sx, sy+ i*30),\
+             (sx + play_width, sy + i * 30))  # horizontal lines
         for j in range(col):
-            pygame.draw.line(surface, (90, 90, 90), (sx + j * 30, sy), (sx + j * 30, sy + play_height))  # vertical lines
+            pygame.draw.line(surface, (90, 90, 90), (sx + j * 30, sy),\
+                 (sx + j * 30, sy + play_height))  # vertical lines
 
 
-# needs commentating
 def draw_next_shape(shape, surface):
     font = pygame.font.SysFont('nunito', 20)
     label = font.render('Next Shape', 1, (255,255,255))
@@ -188,39 +221,71 @@ def draw_next_shape(shape, surface):
         row = list(line)
         for j, column in enumerate(row):
             if column == '0':
-                pygame.draw.rect(surface, shape.color, (sx + j*30, sy + i*30, 30, 30), 0)
+                pygame.draw.rect(surface, shape.color, \
+                    (sx + j * 30, sy + i * 30, 30, 30), 0)
 
-    surface.blit(label, (sx + 10, sy- 30))
+    surface.blit(label, (sx + 10, sy - 30))
 
 
 def draw_window(surface):
     surface.fill((0,0,0))
     font = pygame.font.SysFont('nunito', 45)
-    label = font.render('Battleship', 1, (255,255,255))
+    label = font.render('Battleship', 1, (255, 255, 255))
 
     # (starting position from the left, starting position from the top)
-    surface.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), 30))
+    surface.blit(label,\
+         (top_left_x + play_width / 2 - (label.get_width() / 2), 30))
 
     # goes through all of the squares and creates rectangles of them
     for row in range(len(grid)):
         for col in range(len(grid[row])):
-            pygame.draw.rect(surface, grid[row][col], ((top_left_x + col * 30), (top_left_y + row * 30), 30, 30), 0)
+            pygame.draw.rect(surface, grid[row][col], ((top_left_x + col * 30),\
+                 (top_left_y + row * 30), 30, 30), 0)
 
     # draws the lines for the grid and red border
     draw_grid(surface, 10, 10)
-    pygame.draw.rect(surface, (255, 0, 0), (top_left_x, top_left_y, play_width, play_height), 5)
+    pygame.draw.rect(surface, (255, 0, 0), \
+        (top_left_x, top_left_y, play_width, play_height), 5)
 
 
 def main():
-    global grid
+    global grid, shapes
     accepted = False
     while not accepted:        
         username = str(input("Enter your username [XXX]:  "))
         if len(username) == 3:
             accepted = True
+        
+    # shuffles the shapes order with the api
+            # if the api is down, make the enclosed code a comment and uncomment line 284
+            # enclose starts here 
+    indexes = []
+    while len(indexes) != 6:
+        # generates a random number 0-5 one time repeted
+        url = "http://www.randomnumberapi.com/api/v1.0/random?min=0&max=5&count=1"
+        response = requests.get(url)
+        answer = response.json()
+        if int(answer[0]) not in indexes:
+            indexes.append(int(answer[0]))
+
+    temporary = {}
+    # shuffles shapes according to indexes
+    for key in indexes:
+        for item in shapes:
+            temporary[key] = item
+            shapes.remove(item)
+            break
+    shapes = []
+    for key in sorted(temporary.keys()):
+        shapes.append(temporary[key])
+            # enclosure ends here
+    
+
+    # random.shuffle(shapes)
+    shapes.append(empty)
 
 
-    # (x, y) : (255 , 0, 0)
+    # (x, y) : (0 , 0, 0)
     locked_positions = {}
     grid = create_grid(locked_positions)
     run = True
@@ -235,14 +300,13 @@ def main():
         try:
             current_piece = figure[0]
         except IndexError:
-            # if all ships have been placed - makes them "dissaper" and the guess stages begins
+            # if all ships have been placed it makes them "dissaper"
             if figure == []:
                 # change all locked_positions (r, g, b) to black
                 if endgame:
                     for i in range(100):
                         figure.append(Shot(5, 5, bullet))
                 else:
-                    print(locked_positions)
                     for key in locked_positions.keys():
                         locked_positions.update({key : (0, 0, 0)})
                         endgame = True
@@ -331,9 +395,9 @@ def main():
             if y > -1:
                 grid[y][x] = current_piece.color
 
-
         draw_window(win)
-        # tries to draw the next piece to the right and if there is none then it passes
+
+        # tries to draw the next piece to the right - if there is none then it passes
         try:
             if len(figure) == 2:
                 # display text: press enter and have player two start guessing
@@ -364,7 +428,6 @@ def main():
                 main_menu()
 
 
-
 # makes a window with txt in middle
 def main_menu():
     run = True
@@ -372,7 +435,8 @@ def main_menu():
         win.fill((0, 0, 0))
         draw_text_middle('Press any key to begin.', 45, (255, 255, 255), win)
         font = pygame.font.SysFont('nunito', 25, bold=True)
-        label = font.render("Press i for instructions or h for highscore", 1, (255, 255, 255))
+        label = font.render("Press i for instructions or h for highscore",\
+             1, (255, 255, 255))
         win.blit(label, (160, 270))
         pygame.display.update()
         for event in pygame.event.get():
@@ -386,7 +450,8 @@ def main_menu():
                 # display instructions
                 elif event.key == pygame.K_i:
                     win.fill((0, 0, 0))
-                    key_binds = ["w = up", "s = down", "a = left", "d = right", "r = rotate", "escape = quits the game", "enter = place/confirm"]
+                    key_binds = ["w = up", "s = down", "a = left", "d = right", "r = rotate", 
+                    "enter = place/confirm", "escape = quits the game"]
                     label = font.render("Key binds:", 1, (255, 255, 255))
                     win.blit(label, (75, 50))
                     counter = 0
@@ -396,29 +461,35 @@ def main_menu():
                         win.blit(label, (100, y_coord))
                         counter += 25
                     
-                    label = font.render("If all the ships have been placed press enter then let your friend guess", 1, (255, 255, 255))
+                    label = font.render('If all the ships have been placed press "enter"',\
+                         1, (255, 255, 255))
                     win.blit(label, (25, 300))
+                    label = font.render('Then call in player 2 and let them guess', \
+                        1, (255, 255, 255))
+                    win.blit(label, (25, 320))
                     pygame.display.update()
                     pygame.time.delay(5000)
-                    display_name_inst()
-                    main()
+                    pygame.event.clear()  
+                    main_menu()
                 # display highscore
                 elif event.key == pygame.K_h:
                     display_highscore()
                     pygame.display.update()
                     pygame.time.delay(4000)
-                    display_name_inst()
-                    main()
+                    pygame.event.clear()  
+                    main_menu()
                 # runs the game
                 else:
                     display_name_inst()
                     main()
     pygame.quit()
 
-
 win = pygame.display.set_mode((s_width, s_height))
 pygame.display.set_caption("Battleship")
 
 if __name__ == "__main__":
+    win = pygame.display.set_mode((s_width, s_height))
+    pygame.display.set_caption("Battleship")
+
     # starts the game
     main_menu()
