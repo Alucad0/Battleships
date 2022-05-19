@@ -16,7 +16,7 @@
 
 ### Descrption of the project
 
-This project is going to be a two player OOP (Object-oriented programming) game of battleships using an API. 
+This project is going to be a two player OOP (Object-oriented programming) game of battleships using an API.
 The programm will start by displaying the UI (User intereface) with a plethora of options. The user will choose between playing, view highscore or see instructions by pressing keys that correlate to each options. When the user chooses to play it will ask for a username, then the a user will place the ships followed by the other guessing thier location. 
 
 ### Requirements
@@ -39,7 +39,7 @@ Otherwise you can use the command prompt and change the directory to the scripts
 
 ### Code conventions
 
-**File organisation:** The code is divided into different files, by order of functions, for easier interaction and to facilitate contributions.
+__File organisation:__ The code is divided into different files, by order of functions, for easier interaction and to facilitate contributions.
 
 **Naming convention:** All the files use **snake_case** for variable names.
 
