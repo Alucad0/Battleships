@@ -257,8 +257,9 @@ def main():
             accepted = True
         
     # shuffles the shapes order with the api
-            # if the api is down, make the enclosed code a comment and uncomment line 284
+            # if the api is down, make the enclosed code a comment and uncomment line 289
             # enclose starts here 
+    """
     indexes = []
     while len(indexes) != 6:
         # generates a random number 0-5 one time repeted
@@ -270,6 +271,8 @@ def main():
 
     temporary = {}
     # shuffles shapes according to indexes
+    if len(shapes) == 7:
+        shapes.pop()
     for key in indexes:
         for item in shapes:
             temporary[key] = item
@@ -278,12 +281,15 @@ def main():
     shapes = []
     for key in sorted(temporary.keys()):
         shapes.append(temporary[key])
+    """
             # enclosure ends here
     
-
-    # random.shuffle(shapes)
-    shapes.append(empty)
-
+    if len(shapes) == 7:
+        shapes.pop()
+    random.shuffle(shapes)
+    random.shuffle(shape_colors)
+    if len(shapes) == 6:
+        shapes.append(empty)
 
     # (x, y) : (0 , 0, 0)
     locked_positions = {}
