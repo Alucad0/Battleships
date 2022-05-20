@@ -51,7 +51,7 @@ This is a school project and it will get an failing grade if anyone contributes 
 
 ### Finnished
 
-This project hasn't finnished yet. 
+This project is considered finnished as of 20/5 - 2022. It is now elligable for pull requests and changes.
 
 ### Contributors
 
