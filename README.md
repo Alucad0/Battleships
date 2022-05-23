@@ -17,7 +17,7 @@
 ### Descrption of the project
 
 This project is going to be a two player OOP (Object-oriented programming) game of battleships using an API.
-The programm will start by displaying the UI (User intereface) with a plethora of options. The user will choose between playing, view highscore or see instructions by pressing keys that correlate to each options. When the user chooses to play it will ask for a username, then the a user will place the ships followed by the other guessing thier location. 
+The program will start by displaying the UI (User intereface) with a plethora of options. The user will choose between playing, viewing highscores or see instructions by pressing keys that correlate to each option. When the user chooses to play it will ask for a username, then the a user will place the ships followed by the other guessing thier location. 
 
 ### Requirements
 
